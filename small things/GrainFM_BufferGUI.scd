@@ -132,6 +132,3 @@ s.reboot.waitForBoot{
 	);
 };
 )})
-
-
-w.alwaysOnTop==true
