@@ -12,11 +12,12 @@ b=Buffer.read(s,[ExampleFiles.child,ExampleFiles.apollo11].choose);
 	// Scale.choose).midiratio.postln * g;
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	c=([-21]++(-12,-10..13)).degreeToKey(
-	Scale.dorian).midiratio.postln * g;
+		Scale.dorian).midiratio.postln * g;
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 	r=(c.reverse/(s.sampleRate/[1024,8192].resamp1(c.size)));
-	t={Duty.kr(Dwhite(1,2pi)/pi,0,Drand([-1,1],inf)
-		*Dxrand(1<<_!7 /Dxrand(1<<_!7,inf),inf))};
+
+	t={Duty.kr(Dwhite(0s1,5pi)/pi,0,Drand([-1,1],inf)
+		*Dxrand(1<<_!7 /Dxrand(1<<_!7,inf),inf)).()};
 
 	p={	var a; a=(1..c.size);
 		TChoose.kr(TDuty.ar(t.abs),
@@ -33,8 +34,8 @@ b=Buffer.read(s,[ExampleFiles.child,ExampleFiles.apollo11].choose);
 	)}.();
 
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-	// This is where i am stuck, i want a more elegant solution
-	// for the "v" variable.
+	//
+	// Vill lösa det här snyggare!
 	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 	v=[
@@ -52,10 +53,10 @@ b=Buffer.read(s,[ExampleFiles.child,ExampleFiles.apollo11].choose);
 			**(ceil(t.abs)*8)),
 		(log(LFSaw.kr(t.tan)+1/2*
 			(p*(log10(LFSaw.kr(t)+1/2*c.size)))).sin.abs
-			**(ceil(t.abs)*8)).sin.max,
+		**(ceil(t.abs)*8)).sin.max,
 		(log2(LFSaw.kr(t)+1/2*(p
 			.ring4((LFSaw.kr(t)
-			+1/2**t.abs*c.size)))).cos.max**(t.abs*8)).sin.max,
+				+1/2**t.abs*c.size)))).cos.max**(t.abs*8)).sin.max,
 		(log10(LFSaw.kr(t)+1/2*(p
 			.ring4((LFSaw.kr(t)+1/2
 				**t.abs*c.size)))).cos.max**t.abs).sin.max,
