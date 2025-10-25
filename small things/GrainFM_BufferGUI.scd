@@ -1,3 +1,5 @@
+(
+
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 //
 //  A silly little frontend for the GrainFM Ugen.
@@ -7,11 +9,10 @@
 //
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-(
+
 s.options.blockSize_(1);
 s.reboot.waitForBoot{
 	var keez="[F1] ReSync , [F2]-[F11] Speeds [t] OnTop||| ";
-	// var fg=Color(5/5,1/5,0/5);
 	var fg=Color.black;
 
 	(
